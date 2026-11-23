@@ -29,6 +29,14 @@ El portafolio tiene las siete secciones obligatorias:
 | Ingenia (ExpoTech) | Plataforma web que conecta a albañiles con clientes y ferreterías aliadas, con registro, verificación por correo y OCR del DUI. |
 | App web y backend | Este portafolio: Next.js, componentes React y la API `POST /api/contact`. |
 
+## Idiomas
+
+El portafolio está en **español** (`/`) y en **inglés** (`/en`). El botón **EN / ES** del menú cambia de idioma, también dentro de la página de cada proyecto.
+
+- El contenido (perfil, proyectos, experiencia, habilidades y formación) está en `lib/data.ts` (español) y `lib/data.en.ts` (inglés).
+- Los textos de la interfaz (menú, títulos, botones y formulario) están en `lib/textos.ts`.
+- Los archivos de los proyectos (código de Python, informes, notebook y salida de los programas) están en español.
+
 ## Tecnologías utilizadas
 
 - **Next.js** (App Router): framework principal, rutas dinámicas y generación estática.
@@ -43,26 +51,34 @@ El portafolio tiene las siete secciones obligatorias:
 
 ```
 app/
-  page.tsx                  Página principal con las siete secciones
+  page.tsx                  Página principal en español
+  en/page.tsx               Página principal en inglés
   layout.tsx                Tipografías y metadatos
   globals.css               Paleta, efecto neón y botones
-  proyectos/[slug]/page.tsx Página de detalle de cada proyecto
+  proyectos/[slug]/page.tsx Detalle de cada proyecto (español)
+  en/proyectos/[slug]/page.tsx  Detalle de cada proyecto (inglés)
   api/contact/route.ts      API REST: POST /api/contact
 components/
+  Home.tsx                  Las siete secciones, para cualquier idioma
+  ProyectoPagina.tsx        Detalle de un proyecto, para cualquier idioma
   ContactForm.tsx           Formulario con validación en el navegador
   CodeViewer.tsx            Muestra el código fuente de cada proyecto
+  IdiomaHtml.tsx            Actualiza el atributo lang de la página
 lib/
-  data.ts                   Todo el contenido del portafolio
+  data.ts                   Contenido del portafolio en español
+  data.en.ts                Contenido del portafolio en inglés
+  textos.ts                 Textos de la interfaz en los dos idiomas
+  contenido.ts              Devuelve el contenido según el idioma
 public/
   xochitl.jpg               Fotografía
   proyectos/<proyecto>/     Código, gráficas, datasets, notebook, mapa e informe
 ```
 
-El contenido (perfil, proyectos, experiencia, habilidades y formación) vive en `lib/data.ts`. Para agregar o editar un proyecto se cambia ese archivo y se guardan sus archivos en `public/proyectos/<slug>/`.
+El contenido (perfil, proyectos, experiencia, habilidades y formación) vive en `lib/data.ts` y su traducción en `lib/data.en.ts`. Para agregar o editar un proyecto se cambian esos archivos y se guardan sus archivos en `public/proyectos/<slug>/`.
 
 ## API REST
 
-`POST /api/contact` recibe un JSON con `nombre`, `correo` y `mensaje`.
+`POST /api/contact` recibe un JSON con `nombre`, `correo` y `mensaje`, y opcionalmente `lang` (`es` o `en`) para que los mensajes de error y de confirmación salgan en ese idioma. Si no viene, responde en español.
 
 | Caso | Respuesta |
 | --- | --- |
