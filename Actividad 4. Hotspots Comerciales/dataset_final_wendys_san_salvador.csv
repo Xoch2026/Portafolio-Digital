@@ -1,0 +1,12 @@
+osm_type,osm_id,nombre,marca,tipo_local,latitud,longitud,direccion,ciudad,horario,telefono,sitio_web,cluster,locales_en_cluster,categoria_densidad,latitud_rad,longitud_rad,distancia_centroide_km
+node,6052795498,Wendy's,Wendy's,fast_food,13.6890273,-89.2403041,,,,,,0,6,Alta Concentracion,0.23891859778038954,-1.557537132025995,1.498
+node,9089891045,Wendy's,Wendy's,fast_food,13.6979442,-89.1510351,,,,,https://www.wendys.com.sv/,1,4,Alta Concentracion,0.23907422704446066,-1.5559790940560323,1.229
+node,10212633849,Wendy's,Wendy's,fast_food,13.6644246,-89.1844223,,,,,,2,1,Baja Concentracion,0.23848919966050916,-1.556561810624054,0.0
+way,378380416,Wendy's,Wendy's,fast_food,13.7016555,-89.2313751,Paseo General Escalón,San Salvador,,,,0,6,Alta Concentracion,0.2391390014489899,-1.5573812915770844,0.391
+way,382289412,Wendy's,Wendy's,fast_food,13.6835158,-89.2304659,,,,,,0,6,Alta Concentracion,0.2388224039586659,-1.5573654230435252,1.645
+way,398413973,Wendy's,Wendy's,fast_food,13.700693,-89.2214252,Alameda Franklin Delano Roosevelt,,,,,0,6,Alta Concentracion,0.23912220265493947,-1.5572076330618403,0.99
+way,399532206,Wendy's,Wendy's,fast_food,13.7056518,-89.248891,Avenida Masferrer Sur,,,,,0,6,Alta Concentracion,0.23920875004188735,-1.5576870017035345,2.172
+way,399782016,Wendy's,Wendy's,fast_food,13.7093305,-89.2090946,,,,,,0,6,Alta Concentracion,0.23927295546908048,-1.5569924234930939,2.594
+way,400030715,Wendy's,Wendy's,fast_food,13.6995371,-89.1515246,,,,,https://www.wendys.com.sv/,1,4,Alta Concentracion,0.23910202839411568,-1.5559876374427208,1.062
+way,1131912714,Wendy's,Wendy's,fast_food,13.7126179,-89.1857512,29 Calle Oriente,San Salvador,,,,1,4,Alta Concentracion,0.23933033142291055,-1.5565850043044838,3.043
+way,1510432315,Wendy's,Wendy's,fast_food,13.7156886,-89.1449109,,,,,,1,4,Alta Concentracion,0.23938392524825153,-1.5558722066019814,1.775

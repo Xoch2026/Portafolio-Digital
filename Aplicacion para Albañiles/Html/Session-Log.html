@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="359974457768-j5n8e6eh9c2m100uee1nu0ifvr6nv5tf.apps.googleusercontent.com">
+    <title>Ingenia | Registro de Usuario</title>
+    <link rel="stylesheet" href="Css/LogIn-And-SessionLog-Style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="content_window">
+        <section id="img_viewer">
+            <article id="img_viewer_ribbon">
+                <p id="close_img_viewer" class="normal_text">X</p>
+                <p id="delete_degree" class="normal_text">Eliminar</p>
+            </article>
+            <article id="img_container"></article>
+        </section>
+        <section class="content_inputs" id="inputs_container">
+            <br> <p class="text_title" id="main_title">Registro</p> <br>
+
+            <article id="personal_information_container" class="signup_section">
+                <span id="text_PI1" class="text_alert"></span>
+                <input type="text" placeholder="Nombres" id="input_names_Re" class="input">
+                <span id="text_PI2" class="text_alert"></span>
+                <input type="text" placeholder="Apellidos" id="input_lastnames_Re" class="input">
+                <span id="text_PI3" class="text_alert"></span>
+                <input type="email" placeholder="Correo electrónico" id="input_email_Re" class="input">
+                <p class="normal_text">Fecha de nacimiento: </p>
+                <span id="text_PI4" class="text_alert"></span>
+                <input type="date" placeholder="Fecha de nacimiento" id="input_birthdate_Re" class="input">
+                <span id="text_PI5" class="text_alert"></span>
+                <input type="number" placeholder="Número de contacto" id="input_phonenumber_Re" class="input" >
+                <span id="text_PI6" class="text_alert"></span>
+                <input type="number" id="input_dui_Re" class="input" placeholder="Número de DUI">
+            </article>
+
+            <article id="verification_code_container" class="signup_section">
+                <br> <p class="text_section_title" id="VCC_title">Verificación</p> <br>
+                <span id="text_VC1" class="text_alert"></span>
+                <input type="text" placeholder="Ejemplo -> a4f9c2" id="input_code_Re" class="input">
+            </article>
+
+            <article id="identity_information_container" class="signup_section">
+                <br> <p class="text_section_title">Ubicación</p> <br>
+                <p class="normal_text">De a conocer su localidad a potenciales clientes</p> <br>
+                <article class="select_article_container">
+                    <span id="text_II3" class="text_alert"></span>
+                    <article class="select_article">
+                        <label for="departamento" class="normal_text">Departamento de </label>
+                        <select id="select_departament" name="departamento" required class="input">
+                            <option value="">Departamento</option>
+                        </select><br>
+                    </article>
+                </article>
+                
+                <article class="select_article_container">
+                    <span id="text_II4" class="text_alert"></span>
+                    <article class="select_article">
+                        <label for="municipio" class="normal_text">Municipio de </label>
+                        <select id="select_municipality" name="municipio" required class="input">
+                            <option value="">Municipio</option>
+                        </select><br>
+                    </article> 
+                </article>
+
+                
+                <article class="select_article_container">
+                    <span id="text_II5" class="text_alert"></span>
+                    <article class="select_article">
+                        <label for="distrito" class="normal_text">Distrito de </label>
+                        <select id="select_district" name="distrito" required class="input">
+                            <option value="">Distrito</option>
+                        </select>
+                    </article>
+                </article>
+            </article>
+
+            <article id="security_information_container" class="signup_section">
+                <br> <p class="text_section_title">Protege tu cuenta</p> <br>
+                <p class="normal_text"> Crea una contraseña segura para acceder a Ingenia</p> <br>
+                <span id="text_SI1" class="text_alert"></span>
+                <input type="password" placeholder="Constraseña" id="input_1psw_Re" class="input">
+                <span id="text_SI2" class="text_alert"></span>
+                <input type="password" placeholder="Contraseña" id="input_2psw_Re" class="input">
+            </article>
+
+            <article id="public_profile_information_container" class="signup_section">
+                <br> <p class="text_section_title">Personaliza tu perfil</p> <br>
+                <input type="file" id="input_picture_Re" onchange="place_picture(this, true)" class="input file">
+                <img src="https://ingeniastorage.blob.core.windows.net/profile-pictures/without-picture.jpg" alt="Imágenes/without-picture.jpg" id="file_img_Re" onclick="choose_picture(this)"><br><br>
+                
+                <input type="file" id="input_degrees_Re" onchange="place_picture(this, false)" class="input file">
+                <p class="normal_text">Títulos y trabajos destacados</p> <br>
+                <section id="img_cards_container"></section>
+                <article class="card_img more_img" onclick="add_degree()">
+                    <p class="normal_text">Agregar</p>
+                    <img src="Imágenes/agregar.png" alt="" id="add_img">
+                </article>
+                
+                <br>
+                <textarea type="text" class="input" id="message_description_Re" placeholder="Descripción del usuario"></textarea>
+                <p id="words_counter" class="normal_text"></p>
+            </article>
+
+            <section id="content_buttons_Re">
+                <article id="g_id_onload"
+                data-client_id="359974457768-j5n8e6eh9c2m100uee1nu0ifvr6nv5tf.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse">
+                </article>
+                <section id="primary_bttns_container_father">
+                    <p class="text_alert" id="error_text_alert"></p>
+                    <section id="primary_bttns_container">
+                        <article id="bttn_back_container">
+                            <button class="bttn_send" id="back_bttn">
+                                <p id="bttn_back_txt">← Volver</p>
+                            </button>
+                        </article>
+                        <article id="bttn_send_container">
+                            <button class="bttn_send" id="bttn_send">
+                                <p id="loader"></p>
+                                <p id="bttn_send_txt">Siguiente</p>
+                            </button>
+                        </article>
+                    </section>
+                    <p class="normal_text">
+                        ¿Ya tienes una cuenta? 
+                        <a href="#" class="normal_text" id="Go_to_LogIn">Iniciar sesión</a>
+                    </p> <br>
+                </section>
+                <section id="content_check_buttons_with">
+                    <article id="Google" class="google-container">
+                        <article class="g_id_signin" 
+                            data-type="standard" 
+                            data-size="medium" 
+                            data-theme="filled_white" 
+                            data-shape="pill" 
+                            data-logo_alignment="left">
+                        </article>
+                    </article>
+                    
+                    <p class="normal_text">or continue with</p>
+
+                    <article class="content_Microsoft">
+                        <button id="Microsoft" class="microsoft-btn" onclick="verifyMicrosoftAccount()">
+                            <span class="ms-logo">
+                                <span></span><span></span><span></span><span></span>
+                            </span>
+                            <span>Sign in with Microsoft</span>
+                        </button>
+                    </article>
+                    <br>
+                </section>
+            </section>
+            
+        </section>
+    </main>
+    <aside id="aside_background">
+        <section id="overlay_section_shadow"></section>
+    </aside>
+    <script src="Javascript/Main-Javascript.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingenia | Registro de Usuario</title>
+    <link rel="stylesheet" href="Css/LogIn-And-SessionLog-Style.css">
+</head>
+<body>
+    <main class="content_window">
+        <section id="img_viewer">
+            <article id="img_viewer_ribbon">
+                <img src="Imágenes/volver.png" alt="" id="imgview_closer">
+            </article>
+            <article id="img_container"></article>
+        </section>
+        <section class="content_inputs" id="inputs_container">
+            <p class="text_title" id="main_title">Registro</p> <br>
+            <article class="signup_section" id="dui_information_container">
+                <section>
+                    <article class="file_container">
+                        <input type="file" accept="image/*" capture="environment" id="input_frontdui_OCR" class="input hide">
+                        <section id="duifront_card" class="dui_card">
+                            <article class="duiimg_container frontdui_container">
+                                <img src="Imágenes/front_dui.png" alt="" class="dui_img">
+                            </article>
+                            <article class="frontdui_container">
+                                <p class="main_duiimg_txt show">Cara Frontal</p>
+                                <p class="sub_duiimg_txt show">Ingrese su DUI aquí</p>
+                            </article>
+                            <article class="duibttns_container frontdui_container">
+                                <button class="photobttn" id="bttn_frontphoto">
+                                    <img src="Imágenes/camara-de-fotos.png" alt="" class="imgbttn">
+                                    <p>Tomar una foto</p>
+                                </button>
+                                <button class="uploadbttn" id="bttn_frontupload">
+                                    <img src="Imágenes/subir.png" alt="" class="imgbttn">
+                                    <p style="font-weight: bold;">Subir una imágen</p>
+                                </button>
+                            </article>
+                            <section class="photo_view" id="frontdui_preview">
+                                <article class="check_container">
+                                    <img src="Imágenes/comprobar.png" alt="" class="check">
+                                </article>
+                                <article>
+                                    <p class="scan_title">Escenado exitósamente</p>
+                                    <p class="scan_sub">Cara frontal verificada</p>
+                                </article>
+                                <article class="preview_container" id="front_preview">  
+                                    <img src="Imágenes/front_dui.png" alt="" id="file_frontdui_OCR" class="dui_img">
+                                </article>
+                            </section>
+                            <article class="loading_photo" id="loadfront_dui">
+                                <span class="loader"></span>
+                                <p class="uploading_txt">Escaneando...</p>
+                            </article>
+                        </section>
+                    </article>
+                    <article class="file_container">
+                        <input type="file" accept="image/*" capture="environment" id="input_backdui_OCR" class="input hide">
+                        <section id="duiback_card" class="dui_card">
+                            <article class="duiimg_container backdui_container">
+                                <img src="Imágenes/back_DUI.png" alt="" class="dui_img">
+                            </article>
+                            <article class="backdui_container">
+                                <p class="main_duiimg_txt show">Cara Trasera</p>
+                                <p class="sub_duiimg_txt show">Ingrese su DUI aquí</p>
+                            </article>
+                            <article class="duibttns_container backdui_container">
+                                <button class="photobttn" id="bttn_backphoto">
+                                    <img src="Imágenes/camara-de-fotos.png" alt="" class="imgbttn">
+                                    <p>Tomar una foto</p>
+                                </button>
+                                <button class="uploadbttn" id="bttn_backupload">
+                                    <img src="Imágenes/subir.png" alt="" class="imgbttn">
+                                    <p>Subir una imágen</p>
+                                </button>
+                            </article >
+                            <article class="loading_photo" id="loadback_dui">
+                                <span class="loader"></span>
+                                <p class="uploading_txt">Escaneando...</p>
+                            </article>
+                            <section class="photo_view" id="backdui_preview">
+                                <article class="check_container">
+                                    <img src="Imágenes/comprobar.png" alt="" class="check">
+                                </article>
+                                <article>
+                                    <p class="scan_title">Escaneado exitósamente</p>
+                                    <p class="scan_sub">Cara trasera verificada</p>
+                                </article>
+                                <article class="preview_container" id="back_preview">
+                                    <img src="Imágenes/back_DUI.png" alt="" id="file_backdui_OCR" class="dui_img">
+                                </article>
+                            </section>
+                        </section>
+                    </article> 
+                </section>
+            </article>
+            <article class="signup_section" id="contact_information_container">
+                <section id="ocrInput_email_container">
+                    <article class="duiimg_container input_container">
+                        <img src="Imágenes/correo-electronico.png" alt="" class="dui_img email">
+                    </article>
+                    <article class="duibttns_container email" id="emailBttns_container">
+                        <button class="speechbttn" id="speechBttn">
+                            <img src="Imágenes/microfono.png" alt="" class="imgbttn">
+                            <p>Dicta tu correo</p>
+                        </button>
+                        <button class="typebttn" id="typebttn_ocr">
+                            <img src="Imágenes/teclado.png" alt="" class="imgbttn">
+                            <p>Digita tu email</p>
+                        </button>
+                    </article>
+                    <article class="ocrInput_container" id="ocrEmail_container">
+                        <input type="email" class="input ocr" id="input_email_OCR" placeholder="tu@email.com">
+                        <button id="emailbttn_back">
+                            <img src="Imágenes/volver.png" alt="">
+                            <p>Volver</p>
+                        </button>
+                    </article>
+                    <article id="speechWindow_container">
+                        <article id="speechLoading">
+                            <img src="Imágenes/microfono.png" alt="">
+                            <article id="opacidad"></article>
+                        </article>
+                        <p>Escuchando...</p>
+                        <article>
+                            <p id="transcriptedSpeech">...</p>
+                        </article>
+                        <button id="stopRecording">
+                            <img src="Imágenes/cuadrado-redondeado.png" alt="">
+                        </button>
+                    </article>
+                </section>
+                <section id="ocrInput_phonenumber_container">
+                    <article class="duiimg_container input_container">
+                        <img src="Imágenes/los-telefonos.png" alt="" class="dui_img phonenumber">
+                    </article>
+                    <article class="ocrInput_container">
+                        <p>+503</p>
+                        <input type="number" class="input ocr" id="input_phonenumber_OCR" placeholder="">
+                    </article>  
+                    <article class="ocrBttns_container" id="ocrBttns_container">
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                        <button id="eliminate">←</button>
+                        <button>0</button>
+                    </article>
+                </section>
+            </article>
+            <article class="signup_section" id="password_information_container">
+                <section>
+                    <article>
+                        <img src="" alt="">
+                    </article>
+                    <article>
+                        <button>
+                            <img src="Imágenes/microfono.png" alt="">
+                            <p>Dicta tu contraseña</p>
+                        </button>
+                        <button>
+                            <img src="Imágenes/teclado.png" alt="">
+                            <p>Digita tu contraseña</p>
+                        </button>
+                    </article>
+                    <article>
+                        <input type="text">
+                        <button>
+                            <img src="Imágenes/volver.png" alt="">
+                            <p>Volver</p>
+                        </button>
+                    </article>
+                    <article>
+                        <article>
+                            <img src="Imágenes/microfono.png" alt="">
+                            <article id="opacidad"></article>
+                        </article>
+                        <p>Escuchando...</p>
+                        <article>
+                            <p>...</p>
+                        </article>
+                        <button>
+                            <img src="Imágenes/cuadrado-redondeado.png" alt="">
+                        </button>
+                    </article>
+                </section>
+            </article>
+            <article id="primary_bttns_container_father">
+                <p id="main_alert"></p>
+                <section id="primary_bttns_container" class="ocr">
+                    <button class="primaryBttn_ocr enable" id="slocr_backbttn">
+                        <p id="bttn_back_txt">← Volver</p>
+                    </button>
+                    <button class="primaryBttn_ocr" id="slocr_sendbttn">
+                        <p id="loader"></p>
+                        <p id="bttn_send_txt">Siguiente</p>
+                    </button>
+                </section>
+                <p class="normal_text">
+                    ¿Ya tienes una cuenta? 
+                    <a href="#" class="normal_text" id="Go_to_LogIn">Iniciar sesión</a>
+                </p> <br>
+            </article>
+        </section>
+    </main>
+    <aside id="aside_background">
+        <section id="overlay_section_shadow"></section>
+    </aside>
+    <main id="loading_screen"></main>
+
+    <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+    <script src="Javascript/Main-Javascript.js"></script>
+</body>
+</html>

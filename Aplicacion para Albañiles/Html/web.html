@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;800&family=Carattere&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingenia – La Plataforma de Construcción de El Salvador</title>
+  <style>
+*{
+  font-family: Arial, sans-serif;
+}
+</style>
+  <link rel="stylesheet" href="Css/web.CSS">
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav>
+    <div class="nav-logo">
+      <img src="Imágenes/LogoINtext.png" alt="Logo" class="logocito">
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#">Para Clientes</a>
+      <a href="#">Para Albañiles</a>
+      <a href="#">Cómo funciona</a>
+      <a href="#">Precios</a>
+    </div>
+    <div class="nav-cta">
+     <!-- <a href="#" class="btn-outline">Iniciar Sesión</a> -->
+      <a href="#" class="btn-primary" id="btn-primary">Comenzar</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">La Plataforma de Construcción de El Salvador</span>
+      <h1>Construye la casa de tus sueños<br>con<br><span>Confianza</span></h1>
+      <p>Conéctate con albañiles de confianza, obtén presupuestos transparentes y administra tu proyecto de construcción de principio a fin en una sola plataforma.</p>
+      <div class="hero-buttons">
+        
+       
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section class="section how-it-works section-bg-pattern">
+    <div class="text-center">
+      <p class="section-label">Proceso</p>
+      <h2 class="section-title">Cómo funciona Ingenia</h2>
+      <p class="section-subtitle">Un proceso diseñado para la transparencia y eficiencia</p>
+
+      <div class="tab-switcher" id="tabSwitcher">
+        <button class="tab-btn active" data-tab="clients" onclick="switchTab('clients')">Para Clientes</button>
+        <button class="tab-btn" data-tab="masons" onclick="switchTab('masons')">Para Albañiles</button>
+      </div>
+    </div>
+
+    <div class="steps-grid" id="stepsGrid">
+      <!-- Clients steps (default) -->
+      <div class="step-card">
+        <div class="step-icon">🔍</div>
+        <p class="step-number">Paso 01</p>
+        <h3>Encuentra tu Albañil</h3>
+        <p>Explora profesionales verificados, revisa opiniones, portafolios y experiencia.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">📋</div>
+        <p class="step-number">Paso 02</p>
+        <h3>Obtén tu presupuesto</h3>
+        <p>Recibe cotizaciones detalladas incluyendo mano de obra y materiales. Compara y elige la mejor opción.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">✅</div>
+        <p class="step-number">Paso 03</p>
+        <h3>Aprueba y brinda seguimiento</h3>
+        <p>Acepta el presupuesto y monitorea el progreso de tu proyecto con actualizaciones y fotos en tiempo real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BUILT FOR EVERYONE ─── -->
+  <section class="section built-for">
+    <div class="text-center">
+      <p class="section-label">Características</p>
+      <h2 class="section-title">Diseño para todos</h2>
+      <p class="section-subtitle">Ingenia crea valor para cada participante del ecosistema de construcción</p>
+
+      <div class="audience-tabs" id="audTabs">
+        <button class="aud-btn active" onclick="switchAud('clients')">Para Clientes</button>
+        <button class="aud-btn" onclick="switchAud('masons')">Para Albañiles</button>
+        <button class="aud-btn" onclick="switchAud('stores')">Para Ferreterías</button>
+      </div>
+    </div>
+
+    <div class="features-grid" id="featGrid">
+      <div class="feat-card">
+        <div class="feat-card-num">01</div>
+        <div class="feat-card-line"></div>
+        <h3>Encuentra Albañiles de confianza</h3>
+        <p>Accede a una red seleccionada de profesionales de construcción verificados con opiniones reales y portafolios.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-num">02</div>
+        <div class="feat-card-line"></div>
+        <h3>Presupuestos Transparentes</h3>
+        <p>Recibe cotizaciones detalladas con desglose completo de costos—sin sorpresas ni cargos ocultos.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-card-num">03</div>
+        <div class="feat-card-line"></div>
+        <h3>Seguimiento en tiempo real</h3>
+        <p>Monitorea avances del proyecto, aprueba etapas y recibe actualizaciones fotográficas desde cualquier lugar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY INGENIA ─── -->
+  <section class="section why-ingenia">
+    <div class="why-grid">
+      <div class="why-img-card">
+        <div class="why-img-placeholder">🏠</div>
+        <div class="why-stat">
+          <div class="why-stat-num">98%</div>
+          <div class="why-stat-label">Índice de Satisfacción del Cliente</div>
+        </div>
+      </div>
+      <div class="why-content">
+        <p class="section-label">Por qué Ingenia</p>
+        <h2 class="section-title" style="color:white;">¿Por Qué Elegir Ingenia?</h2>
+        <p class="section-subtitle">Estamos transformando la industria de construcción de El Salvador con tecnología que prioriza la confianza, eficiencia y transparencia.</p>
+        <div class="why-features">
+          <div class="why-feat">
+            <div class="why-feat-icon">✔️</div>
+            <div class="why-feat-text">
+              <h4>Transparencia primero</h4>
+              <p>Sin cargos ocultos ni sorpresas. Cada presupuesto es claro y detallado para que sepas exactamente por qué estás pagando.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-feat-icon">🔒</div>
+            <div class="why-feat-text">
+              <h4>Basado en la confianza</h4>
+              <p>Profesionales verificados, opiniones reales y portafolios aseguran que trabajes con albañiles calificados y confiables.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-feat-icon">⚡</div>
+            <div class="why-feat-text">
+              <h4>Primeros en El Salvador</h4>
+              <p>Estamos liderando la transformación digital de la construcción en El Salvador sin competencia, solo innovación.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="section testimonials section-bg-pattern">
+    <div class="text-center">
+      <p class="section-label">Testimonios</p>
+      <h2 class="section-title">Lo que dicen nuestros usuarios</h2>
+      <p class="section-subtitle">Con la confianza de propietarios y profesionales en todo El Salvador</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Usar Ingenia fue completamente libre de estrés. Encontré un excelente albañil, obtuve un presupuesto claro y pude seguir todo desde mi teléfono. ¡Muy recomendado!"</p>
+        <div class="test-author">
+          <div class="test-avatar">MG</div>
+          <div>
+            <div class="test-name">María González</div>
+            <div class="test-role">Propietaria · San Salvador</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Ingenia transformó completamente mi negocio. Puedo llegar a más clientes, crear presupuestos más rápido y los descuentos mayoristas me ayudan a ofrecer mejores precios."</p>
+        <div class="test-author">
+          <div class="test-avatar">CR</div>
+          <div>
+            <div class="test-name">Carlos Ramírez</div>
+            <div class="test-role">Albañil Profesional · Santa Ana</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"La transparencia fue lo que me convenció. Sin sorpresas ni costos ocultos. Supe exactamente por qué estaba pagando en cada etapa."</p>
+        <div class="test-author">
+          <div class="test-avatar">AM</div>
+          <div>
+            <div class="test-name">Ana Martínez</div>
+            <div class="test-role">Propietaria · San Miguel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-cta">
+      <p>Únete a miles de usuarios satisfechos</p>
+  
+    </div>
+  </section>
+
+  <!-- ─── HARDWARE PARTNERS ─── -->
+  <section class="section partners">
+    <div class="text-center">
+      <p class="section-label">Socios</p>
+      <h2 class="section-title">Nuestros socios de ferreterias</h2>
+      <p class="section-subtitle">Trabajando con las principales ferreterías de El Salvador</p>
+    </div>
+
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="partner-name">Ferretería Central</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="partner-name">Materiales El Salvador</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="partner-name">Construmax</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="partner-name">Ferretería La Unión</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="partner-name">Distribuidora López</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="partner-name">Almacén Constructor</div>
+      </div>
+    </div>
+
+    <div class="partners-cta">
+      <button class="btn-outline" style="font-size:0.95rem; padding: 12px 32px;">Conviértete en Socio</button>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ─── -->
+  <section class="section faq">
+    <div class="text-center">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Preguntas Frecuentes</h2>
+      <p class="section-subtitle">Todo lo que necesitas saber sobre Ingenia</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Cómo verifica Ingenia a los albañiles?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Todos los albañiles pasan por un proceso de verificación de identidad, evaluación de habilidades y revisión de referencias antes de aparecer en nuestra plataforma.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Cómo se generan los presupuestos?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Los albañiles usan nuestras herramientas integradas para crear cotizaciones detalladas con costos de materiales y mano de obra.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Qué pasa si no estoy satisfecho con el trabajo?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Contamos con un proceso de resolución de disputas. Los pagos se liberan por etapas según los avances del proyecto.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Cómo funcionan los descuentos mayoristas para albañiles?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Los albañiles verificados obtienen acceso a precios exclusivos de nuestros socios ferreteros.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+         ¿Ingenia está disponible en todo El Salvador?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">¡Sí! Ingenia está disponible en los 14 departamentos de El Salvador.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Cómo puedo convertirme en albañil verificado en Ingenia?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Regístrate como albañil, completa tu perfil y envía tus documentos de verificación.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BAND ─── -->
+  <div class="cta-band">
+    <div>
+      <h2>¿Todavía tienes preguntas?</h2>
+      <p>Nuestro equipo de soporte está aquí para ayudarte a comenzar</p>
+    </div>
+    <button class="btn-orange">Contactar Soporte</button>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:white;">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          Ingenia
+        </div>
+        <p><p>Transformando la industria de construcción de El Salvador mediante transparencia, confianza y tecnología.</p></p>
+        <div class="social-links">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">𝕏</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Plataforma</h4>
+        <ul>
+          <li><a href="#">Para Clientes</a></li>
+          <li><a href="#">Para Albañiles</a></li>
+          <li><a href="#">Para Ferreterias</a></li>
+          <li><a href="#">Cómo funciona</a></li>
+          <li><a href="#">Precios</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Carreras</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Kit de Prensa</a></li>
+          <li><a href="#">Socios</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Soporte</h4>
+        <ul>
+          <li><a href="#">Centro de ayuda</a></li>
+          <li><a href="#">Contáctanos</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+          <li><a href="#">Términos de Servicio</a></li>
+          <li><a href="#">Políticas de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Ingenia. All rights reserved. Built with love in El Salvador.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── TAB: HOW IT WORKS ─── */
+    const stepsData = {
+      clients: [
+        { icon: '🔍', num: 'Step 01', title: 'Find Your Mason', desc: 'Browse verified professionals, check reviews, portfolios, and experience ratings.' },
+        { icon: '📋', num: 'Step 02', title: 'Get Your Budget', desc: 'Receive detailed quotes including labor and materials. Compare and choose the best option.' },
+        { icon: '✅', num: 'Step 03', title: 'Approve & Track', desc: 'Accept the budget and monitor your project\'s progress with real-time updates and photos.' },
+      ],
+      masons: [
+        { icon: '👤', num: 'Step 01', title: 'Create Your Profile', desc: 'Showcase your experience, completed projects, and build your professional reputation.' },
+        { icon: '💰', num: 'Step 02', title: 'Generate Budgets', desc: 'Use our tools to create fast, accurate quotes with automated material calculations.' },
+        { icon: '🏪', num: 'Step 03', title: 'Order Materials', desc: 'Send material lists to partner hardware stores and get exclusive wholesale discounts.' },
+      ]
+    };
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      const grid = document.getElementById('stepsGrid');
+      grid.innerHTML = stepsData[tab].map(s => `
+        <div class="step-card">
+          <div class="step-icon">${s.icon}</div>
+          <p class="step-number">${s.num}</p>
+          <h3>${s.title}</h3>
+          <p>${s.desc}</p>
+        </div>`).join('');
+    }
+
+    /* ─── AUDIENCE TABS ─── */
+    const featData = {
+      clients: [
+        { num:'01', title:'Find Trusted Masons', desc:'Access a curated network of verified construction professionals with real reviews and portfolios.' },
+        { num:'02', title:'Transparent Budgets', desc:'Receive itemized quotes with full cost breakdowns—no surprises, no hidden fees.' },
+        { num:'03', title:'Real-Time Tracking', desc:'Monitor project milestones, approve phases, and receive photo updates from anywhere.' },
+      ],
+      masons: [
+        { num:'01', title:'Grow Your Client Base', desc:'Get discovered by homeowners actively looking for trusted construction professionals.' },
+        { num:'02', title:'Smart Budget Tools', desc:'Create professional, detailed quotes in minutes with automated material cost calculators.' },
+        { num:'03', title:'Wholesale Discounts', desc:'Order materials through our partner stores at exclusive wholesale pricing, saving on every project.' },
+      ],
+      stores: [
+        { num:'01', title:'New Sales Channel', desc:'Receive purchase orders directly from masons on the platform, expanding your customer reach.' },
+        { num:'02', title:'Digital Catalog', desc:'Showcase your inventory with up-to-date pricing, available 24/7 to all verified masons.' },
+        { num:'03', title:'Partner Branding', desc:'Feature your store on Ingenia\'s partner page and gain visibility across El Salvador.' },
+      ],
+    };
+
+    function switchAud(aud) {
+      document.querySelectorAll('.aud-btn').forEach((b, i) => {
+        b.classList.toggle('active', ['clients','masons','stores'][i] === aud);
+      });
+      const grid = document.getElementById('featGrid');
+      grid.innerHTML = featData[aud].map(f => `
+        <div class="feat-card">
+          <div class="feat-card-num">${f.num}</div>
+          <div class="feat-card-line"></div>
+          <h3>${f.title}</h3>
+          <p>${f.desc}</p>
+        </div>`).join('');
+    }
+
+    /* ─── FAQ ─── */
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+  </script>
+</body>
+
+<script src="Javascript/web_javascript.js"></script>
+</html>

@@ -1,0 +1,12 @@
+osm_type,osm_id,nombre,marca,tipo_local,latitud,longitud,direccion,ciudad,horario,telefono,sitio_web
+node,6052795498,Wendy's,Wendy's,fast_food,13.6890273,-89.2403041,,,,,
+node,9089891045,Wendy's,Wendy's,fast_food,13.6979442,-89.1510351,,,,,https://www.wendys.com.sv/
+node,10212633849,Wendy's,Wendy's,fast_food,13.6644246,-89.1844223,,,,,
+way,378380416,Wendy's,Wendy's,fast_food,13.7016555,-89.2313751,Paseo General Escalón,San Salvador,,,
+way,382289412,Wendy's,Wendy's,fast_food,13.6835158,-89.2304659,,,,,
+way,398413973,Wendy's,Wendy's,fast_food,13.700693,-89.2214252,Alameda Franklin Delano Roosevelt,,,,
+way,399532206,Wendy's,Wendy's,fast_food,13.7056518,-89.248891,Avenida Masferrer Sur,,,,
+way,399782016,Wendy's,Wendy's,fast_food,13.7093305,-89.2090946,,,,,
+way,400030715,Wendy's,Wendy's,fast_food,13.6995371,-89.1515246,,,,,https://www.wendys.com.sv/
+way,1131912714,Wendy's,Wendy's,fast_food,13.7126179,-89.1857512,29 Calle Oriente,San Salvador,,,
+way,1510432315,Wendy's,Wendy's,fast_food,13.7156886,-89.1449109,,,,,

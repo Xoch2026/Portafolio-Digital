@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8aef44408f2cde862ef9516447ad3548 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; top: 15px; left: 55px; right: 55px; z-index:9999;
+background-color: rgba(255, 255, 255, 0.95); border: 2px solid #1d4ed8; border-radius: 8px;
+padding: 12px 16px; font-family: Arial, sans-serif; font-size: 12px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
+<b style="font-size: 14px; color: #10233f;">Hotspots Comerciales de El Salvador: Wendy's (San Salvador)</b><br>
+<b>Fuente:</b> OpenStreetMap (OSM) - Overpass API | <b>Extraccion:</b> 13 de noviembre de 2026 | <b>Modelo:</b> K-Means (K=3) + KNN Haversine (k=3)<br>
+<b>Interpretacion:</b> Los clusters agrupan la oferta mapeada en OSM (no flujo real de personas). El punto propuesto (13.7015, -89.2310) se clasifica como <b>Alta Concentracion</b> segun sus 3 vecinos mas cercanos.
+</div>
+    
+<div style="position: fixed; bottom: 25px; left: 25px; width: 295px; z-index:9999;
+background-color: rgba(255, 255, 255, 0.95); border: 2px solid #444; border-radius: 8px; padding: 12px;
+font-family: Arial, sans-serif; font-size: 12px; box-shadow: 2px 2px 6px rgba(0,0,0,0.3);">
+<b>Leyenda del Mapa</b><br><br>
+<span style="color: red;">&#9873;</span> Nueva ubicacion propuesta (Alta Concentracion)<br>
+<span style="color: black;">&#9733;</span> Centroide polo comercial (K-Means)<br>
+<span style="color: blue;">&#9679;</span> Sucursales actuales por cluster (ver popup)<br>
+<span style="color: crimson;">---</span> Distancia Haversine a 3 vecinos KNN<br>
+<hr style="margin: 6px 0;">
+<small>Umbral densidad: &gt; 3.67 locales/cluster = Alta Concentracion</small>
+</div>
+    
+            <div class="folium-map" id="map_8aef44408f2cde862ef9516447ad3548" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8aef44408f2cde862ef9516447ad3548 = L.map(
+                "map_8aef44408f2cde862ef9516447ad3548",
+                {
+                    center: [13.7015, -89.231],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b4264cb84dda35136110f592e2c323e3 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri World Street Map",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b4264cb84dda35136110f592e2c323e3.addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var circle_577f491d453beb56f15103c3de16593b = L.circle(
+                [13.698312316666668, -89.23025931666666],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1100, "stroke": true, "weight": 3}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var marker_cc6b16712aea5fcac9d7f5a07b88063e = L.marker(
+                [13.698312316666668, -89.23025931666666],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_7a73ebb9d8bf37b8d9ca9594631d6a3c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4ecb432b6de462a1b6c3194d696eb38d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4ff9f797002c19eb25c83fc6677aaee6 = $(`<div id="html_4ff9f797002c19eb25c83fc6677aaee6" style="width: 100.0%; height: 100.0%;"><b>Centroide Cluster 0</b><br>Locales: 6<br>Categoria Zona: Alta Concentracion</div>`)[0];
+                popup_4ecb432b6de462a1b6c3194d696eb38d.setContent(html_4ff9f797002c19eb25c83fc6677aaee6);
+            
+        
+
+        marker_cc6b16712aea5fcac9d7f5a07b88063e.bindPopup(popup_4ecb432b6de462a1b6c3194d696eb38d)
+        ;
+
+        
+    
+    
+            marker_cc6b16712aea5fcac9d7f5a07b88063e.bindTooltip(
+                `<div>
+                     Centroide Cluster 0 (Alta Concentracion)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cc6b16712aea5fcac9d7f5a07b88063e.setIcon(icon_7a73ebb9d8bf37b8d9ca9594631d6a3c);
+            
+    
+            var circle_09a9598214769cf189a23908f353a062 = L.circle(
+                [13.70644695, -89.15830545],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1100, "stroke": true, "weight": 3}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var marker_95f58928b17c741e250612b388f9e5fa = L.marker(
+                [13.70644695, -89.15830545],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_92d7c045ab87182c4bb182ac68006abb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c7870261a46661ac0f7c13792fbefa2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b9c5626889814ab42353898eb5ba617b = $(`<div id="html_b9c5626889814ab42353898eb5ba617b" style="width: 100.0%; height: 100.0%;"><b>Centroide Cluster 1</b><br>Locales: 4<br>Categoria Zona: Alta Concentracion</div>`)[0];
+                popup_5c7870261a46661ac0f7c13792fbefa2.setContent(html_b9c5626889814ab42353898eb5ba617b);
+            
+        
+
+        marker_95f58928b17c741e250612b388f9e5fa.bindPopup(popup_5c7870261a46661ac0f7c13792fbefa2)
+        ;
+
+        
+    
+    
+            marker_95f58928b17c741e250612b388f9e5fa.bindTooltip(
+                `<div>
+                     Centroide Cluster 1 (Alta Concentracion)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_95f58928b17c741e250612b388f9e5fa.setIcon(icon_92d7c045ab87182c4bb182ac68006abb);
+            
+    
+            var circle_1b332740e47ca2fb44eb0b5833847048 = L.circle(
+                [13.6644246, -89.1844223],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1100, "stroke": true, "weight": 3}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var marker_4f41008762b7da9b717f8365c440b41a = L.marker(
+                [13.6644246, -89.1844223],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_5bd55e734dcfce7ee42986675ab371bd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a49d9d4e660a64a5c6158070b09cf21c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_afe4614c9bbdc8e4d676e258a350581f = $(`<div id="html_afe4614c9bbdc8e4d676e258a350581f" style="width: 100.0%; height: 100.0%;"><b>Centroide Cluster 2</b><br>Locales: 1<br>Categoria Zona: Baja Concentracion</div>`)[0];
+                popup_a49d9d4e660a64a5c6158070b09cf21c.setContent(html_afe4614c9bbdc8e4d676e258a350581f);
+            
+        
+
+        marker_4f41008762b7da9b717f8365c440b41a.bindPopup(popup_a49d9d4e660a64a5c6158070b09cf21c)
+        ;
+
+        
+    
+    
+            marker_4f41008762b7da9b717f8365c440b41a.bindTooltip(
+                `<div>
+                     Centroide Cluster 2 (Baja Concentracion)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4f41008762b7da9b717f8365c440b41a.setIcon(icon_5bd55e734dcfce7ee42986675ab371bd);
+            
+    
+            var marker_e7f269612d8d5095ac37651142f0e673 = L.marker(
+                [13.6890273, -89.2403041],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_2dac7331d9e3940d69e9e98b316cbd84 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_633c1c04281c39eda959af64458321c0 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6278a34b995181aa2c7725c1dbb9b186 = $(`<div id="html_6278a34b995181aa2c7725c1dbb9b186" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 0 (Alta Concentracion)<br>Coords: 13.68903, -89.24030</div>`)[0];
+                popup_633c1c04281c39eda959af64458321c0.setContent(html_6278a34b995181aa2c7725c1dbb9b186);
+            
+        
+
+        marker_e7f269612d8d5095ac37651142f0e673.bindPopup(popup_633c1c04281c39eda959af64458321c0)
+        ;
+
+        
+    
+    
+            marker_e7f269612d8d5095ac37651142f0e673.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e7f269612d8d5095ac37651142f0e673.setIcon(icon_2dac7331d9e3940d69e9e98b316cbd84);
+            
+    
+            var marker_31a1cdec465805cc04cf5619bb9b00d0 = L.marker(
+                [13.6979442, -89.1510351],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_117b6182f9e1f755771c3d33cb845ffc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3e4feebbb2b50fae08c1a2bf14840a65 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f704d701d88ac2ead280be86bcfd105d = $(`<div id="html_f704d701d88ac2ead280be86bcfd105d" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 1 (Alta Concentracion)<br>Coords: 13.69794, -89.15104</div>`)[0];
+                popup_3e4feebbb2b50fae08c1a2bf14840a65.setContent(html_f704d701d88ac2ead280be86bcfd105d);
+            
+        
+
+        marker_31a1cdec465805cc04cf5619bb9b00d0.bindPopup(popup_3e4feebbb2b50fae08c1a2bf14840a65)
+        ;
+
+        
+    
+    
+            marker_31a1cdec465805cc04cf5619bb9b00d0.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_31a1cdec465805cc04cf5619bb9b00d0.setIcon(icon_117b6182f9e1f755771c3d33cb845ffc);
+            
+    
+            var marker_097c41677de63c7475b0b6e9f020de30 = L.marker(
+                [13.6644246, -89.1844223],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_ddd8d9405594609193223a0683459ab5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9bca924230aa27040968f53a08c2c80e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d4c4fe2e04e4f91262948583416cb962 = $(`<div id="html_d4c4fe2e04e4f91262948583416cb962" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 2 (Baja Concentracion)<br>Coords: 13.66442, -89.18442</div>`)[0];
+                popup_9bca924230aa27040968f53a08c2c80e.setContent(html_d4c4fe2e04e4f91262948583416cb962);
+            
+        
+
+        marker_097c41677de63c7475b0b6e9f020de30.bindPopup(popup_9bca924230aa27040968f53a08c2c80e)
+        ;
+
+        
+    
+    
+            marker_097c41677de63c7475b0b6e9f020de30.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_097c41677de63c7475b0b6e9f020de30.setIcon(icon_ddd8d9405594609193223a0683459ab5);
+            
+    
+            var marker_e0b94ca20ecc2b022d79c801e8c840ff = L.marker(
+                [13.7016555, -89.2313751],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_1ccf8a6345f636a70b3915740657c8a7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6783f7314073ff94c6340c5766db2cc3 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_2220842e7c24152049ad94a65403293d = $(`<div id="html_2220842e7c24152049ad94a65403293d" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 0 (Alta Concentracion)<br>Coords: 13.70166, -89.23138</div>`)[0];
+                popup_6783f7314073ff94c6340c5766db2cc3.setContent(html_2220842e7c24152049ad94a65403293d);
+            
+        
+
+        marker_e0b94ca20ecc2b022d79c801e8c840ff.bindPopup(popup_6783f7314073ff94c6340c5766db2cc3)
+        ;
+
+        
+    
+    
+            marker_e0b94ca20ecc2b022d79c801e8c840ff.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e0b94ca20ecc2b022d79c801e8c840ff.setIcon(icon_1ccf8a6345f636a70b3915740657c8a7);
+            
+    
+            var marker_b45d02bd23cd6ef884bde8438d6086dc = L.marker(
+                [13.6835158, -89.2304659],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_415851886ffcac81f4afd819223ea47f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dc8c6175ae50629b0a3e87eca8c53c3a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_24c17c9463494875a42fa3fc21616c96 = $(`<div id="html_24c17c9463494875a42fa3fc21616c96" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 0 (Alta Concentracion)<br>Coords: 13.68352, -89.23047</div>`)[0];
+                popup_dc8c6175ae50629b0a3e87eca8c53c3a.setContent(html_24c17c9463494875a42fa3fc21616c96);
+            
+        
+
+        marker_b45d02bd23cd6ef884bde8438d6086dc.bindPopup(popup_dc8c6175ae50629b0a3e87eca8c53c3a)
+        ;
+
+        
+    
+    
+            marker_b45d02bd23cd6ef884bde8438d6086dc.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b45d02bd23cd6ef884bde8438d6086dc.setIcon(icon_415851886ffcac81f4afd819223ea47f);
+            
+    
+            var marker_b04a4b1622f037fe0bfe8902c197c81d = L.marker(
+                [13.700693, -89.2214252],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_495349b8bed77dfc3b0b912628de736e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_508319d80cc35a06ac8756f2983b1137 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_fb256f0e9c5d043130a690ad9d9f2528 = $(`<div id="html_fb256f0e9c5d043130a690ad9d9f2528" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 0 (Alta Concentracion)<br>Coords: 13.70069, -89.22143</div>`)[0];
+                popup_508319d80cc35a06ac8756f2983b1137.setContent(html_fb256f0e9c5d043130a690ad9d9f2528);
+            
+        
+
+        marker_b04a4b1622f037fe0bfe8902c197c81d.bindPopup(popup_508319d80cc35a06ac8756f2983b1137)
+        ;
+
+        
+    
+    
+            marker_b04a4b1622f037fe0bfe8902c197c81d.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b04a4b1622f037fe0bfe8902c197c81d.setIcon(icon_495349b8bed77dfc3b0b912628de736e);
+            
+    
+            var marker_6a0e9eb6b126f065b89297993f536094 = L.marker(
+                [13.7056518, -89.248891],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_90fd840bde8413ca19aa0266d7f5c97d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_355345f2c9334b91f8ee5132bf63badb = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_705ceab29d45108c462a30c4bc8ac99b = $(`<div id="html_705ceab29d45108c462a30c4bc8ac99b" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 0 (Alta Concentracion)<br>Coords: 13.70565, -89.24889</div>`)[0];
+                popup_355345f2c9334b91f8ee5132bf63badb.setContent(html_705ceab29d45108c462a30c4bc8ac99b);
+            
+        
+
+        marker_6a0e9eb6b126f065b89297993f536094.bindPopup(popup_355345f2c9334b91f8ee5132bf63badb)
+        ;
+
+        
+    
+    
+            marker_6a0e9eb6b126f065b89297993f536094.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6a0e9eb6b126f065b89297993f536094.setIcon(icon_90fd840bde8413ca19aa0266d7f5c97d);
+            
+    
+            var marker_5637a4899c2bed9042f303a7451eee55 = L.marker(
+                [13.7093305, -89.2090946],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_687dc1c047a74e7d4e9248c3f7b3f0bc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_964def45f44c697340fa36b9e2a958e7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bcdb5c5fee2a0a90fce2627f715f409b = $(`<div id="html_bcdb5c5fee2a0a90fce2627f715f409b" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 0 (Alta Concentracion)<br>Coords: 13.70933, -89.20909</div>`)[0];
+                popup_964def45f44c697340fa36b9e2a958e7.setContent(html_bcdb5c5fee2a0a90fce2627f715f409b);
+            
+        
+
+        marker_5637a4899c2bed9042f303a7451eee55.bindPopup(popup_964def45f44c697340fa36b9e2a958e7)
+        ;
+
+        
+    
+    
+            marker_5637a4899c2bed9042f303a7451eee55.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5637a4899c2bed9042f303a7451eee55.setIcon(icon_687dc1c047a74e7d4e9248c3f7b3f0bc);
+            
+    
+            var marker_189075d173b6d5207ba9f6ccf480190f = L.marker(
+                [13.6995371, -89.1515246],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_710578680eadf0ce4aa91f1ce092b7a3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f322eab60de9a296eb8320535e324962 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5356dfd2f53abf45f59fd49d15a8980e = $(`<div id="html_5356dfd2f53abf45f59fd49d15a8980e" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 1 (Alta Concentracion)<br>Coords: 13.69954, -89.15152</div>`)[0];
+                popup_f322eab60de9a296eb8320535e324962.setContent(html_5356dfd2f53abf45f59fd49d15a8980e);
+            
+        
+
+        marker_189075d173b6d5207ba9f6ccf480190f.bindPopup(popup_f322eab60de9a296eb8320535e324962)
+        ;
+
+        
+    
+    
+            marker_189075d173b6d5207ba9f6ccf480190f.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_189075d173b6d5207ba9f6ccf480190f.setIcon(icon_710578680eadf0ce4aa91f1ce092b7a3);
+            
+    
+            var marker_862efee182f2a414d9761f5181beb2fb = L.marker(
+                [13.7126179, -89.1857512],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_5090588b7cf38f3a7b34f03c6988a121 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8f9b3155a287366c666ee966d07cb8be = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_dec525669092c515baa918f62901682e = $(`<div id="html_dec525669092c515baa918f62901682e" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 1 (Alta Concentracion)<br>Coords: 13.71262, -89.18575</div>`)[0];
+                popup_8f9b3155a287366c666ee966d07cb8be.setContent(html_dec525669092c515baa918f62901682e);
+            
+        
+
+        marker_862efee182f2a414d9761f5181beb2fb.bindPopup(popup_8f9b3155a287366c666ee966d07cb8be)
+        ;
+
+        
+    
+    
+            marker_862efee182f2a414d9761f5181beb2fb.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_862efee182f2a414d9761f5181beb2fb.setIcon(icon_5090588b7cf38f3a7b34f03c6988a121);
+            
+    
+            var marker_f1cca86425914b8dfaaa081fd2a2f9eb = L.marker(
+                [13.7156886, -89.1449109],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_c3e64802f94f969d4afaa3262df9a23f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "cutlery",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_efb682d23cab22100cc444dd9571458f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_899a83bae53b0dcf52096c2f1433c9b2 = $(`<div id="html_899a83bae53b0dcf52096c2f1433c9b2" style="width: 100.0%; height: 100.0%;"><b>Wendy's</b><br>Categoria OSM: fast_food<br>Cluster K-Means: 1 (Alta Concentracion)<br>Coords: 13.71569, -89.14491</div>`)[0];
+                popup_efb682d23cab22100cc444dd9571458f.setContent(html_899a83bae53b0dcf52096c2f1433c9b2);
+            
+        
+
+        marker_f1cca86425914b8dfaaa081fd2a2f9eb.bindPopup(popup_efb682d23cab22100cc444dd9571458f)
+        ;
+
+        
+    
+    
+            marker_f1cca86425914b8dfaaa081fd2a2f9eb.bindTooltip(
+                `<div>
+                     Wendy's [fast_food] - Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f1cca86425914b8dfaaa081fd2a2f9eb.setIcon(icon_c3e64802f94f969d4afaa3262df9a23f);
+            
+    
+            var poly_line_2c8e8e2b46173198a863bfe09cf12943 = L.polyline(
+                [[13.7015, -89.231], [13.7016555, -89.2313751]],
+                {"bubblingMouseEvents": true, "color": "crimson", "dashArray": "6, 6", "dashOffset": null, "fill": false, "fillColor": "crimson", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            poly_line_2c8e8e2b46173198a863bfe09cf12943.bindTooltip(
+                `<div>
+                     Vecino 1: Wendy's (0.04 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_45dd30dbf5b6653766bc6234f8f1c469 = L.polyline(
+                [[13.7015, -89.231], [13.700693, -89.2214252]],
+                {"bubblingMouseEvents": true, "color": "crimson", "dashArray": "6, 6", "dashOffset": null, "fill": false, "fillColor": "crimson", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            poly_line_45dd30dbf5b6653766bc6234f8f1c469.bindTooltip(
+                `<div>
+                     Vecino 2: Wendy's (1.04 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_440ce51800122b674859f669ce296961 = L.polyline(
+                [[13.7015, -89.231], [13.6890273, -89.2403041]],
+                {"bubblingMouseEvents": true, "color": "crimson", "dashArray": "6, 6", "dashOffset": null, "fill": false, "fillColor": "crimson", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            poly_line_440ce51800122b674859f669ce296961.bindTooltip(
+                `<div>
+                     Vecino 3: Wendy's (1.71 km)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_72e054c85b398a4c4f1bf36e29b2f666 = L.marker(
+                [13.7015, -89.231],
+                {
+}
+            ).addTo(map_8aef44408f2cde862ef9516447ad3548);
+        
+    
+            var icon_b964eeeb64115350759d43b714789f23 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1acd6166224ac9c870e4b272e661abee = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a6bd6b1109a7853e21eaf73e2efac5e9 = $(`<div id="html_a6bd6b1109a7853e21eaf73e2efac5e9" style="width: 100.0%; height: 100.0%;"><b>Nueva Ubicacion Propuesta</b><br>Clasificacion KNN (k=3): Alta Concentracion<br>Coords: 13.70150, -89.23100</div>`)[0];
+                popup_1acd6166224ac9c870e4b272e661abee.setContent(html_a6bd6b1109a7853e21eaf73e2efac5e9);
+            
+        
+
+        marker_72e054c85b398a4c4f1bf36e29b2f666.bindPopup(popup_1acd6166224ac9c870e4b272e661abee)
+        ;
+
+        
+    
+    
+            marker_72e054c85b398a4c4f1bf36e29b2f666.bindTooltip(
+                `<div>
+                     Ubicacion Propuesta (Alta Concentracion)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_72e054c85b398a4c4f1bf36e29b2f666.setIcon(icon_b964eeeb64115350759d43b714789f23);
+            
+</script>
+</html>

@@ -1,0 +1,46 @@
+<style>
+    *{
+        color: white;
+        background-color: white;
+    }
+</style>
+
+<?php
+header("Access-Control-Allow-Origin: https://ingenia-a6dkhcarh6e3b0ak.mexicocentral-01.azurewebsites.net/");
+header("Access-Control-Allow-Methods: GET");
+
+session_start();
+
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+try{
+    if($_SERVER['REQUEST_METHOD'] !== 'GET'){
+        throw new Exception('NO GET');
+    }
+    if(empty($_GET)){
+        throw new Exception('GET required');
+    }
+
+    $mandatories = ['names', 'lastnames', 'email', 'birthdate', 'phonenumber', 'dui', 'code', 'rol'];
+    $params = [];
+
+    foreach($mandatories as $mandatory){
+        $value = trim($_GET[$mandatory]);
+        if($value === ''){ throw new Exception("$mandatory required"); }
+        $params[$mandatory] = $value;
+    }
+    $_SESSION['vth_email'] = $params;
+} catch(Exception $e){
+    die(json_encode([
+        'status' => 'failed',
+        'error' => $e->getMessage(),
+        'msg' => 'check "error"'
+    ]));
+}
+?>
+
+<script>
+    const user = <?php echo json_encode($params); ?>;
+    sessionStorage.setItem('vth_email', JSON.stringify(user));
+    window.location.href = 'https://ingenia-a6dkhcarh6e3b0ak.mexicocentral-01.azurewebsites.net/Ingenia/Html/session-log.html';
+</script>
