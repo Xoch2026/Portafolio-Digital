@@ -45,7 +45,7 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto px-6 space-y-28 pb-28">
           <section id="sobre-mi">
-            <H2>Backstage</H2>
+            <H2>Backstage <span className="text-2xl md:text-3xl text-[var(--cromo)] opacity-80 [text-shadow:none]">(Sobre mí)</span></H2>
             <div className="grid md:grid-cols-[220px_1fr] gap-8 items-start mb-12">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/xochitl.jpg" alt="Xochitl Lisbeth Delgado Cano" className="aspect-square w-full object-cover object-top border-4 border-[var(--magenta)]" />
@@ -63,7 +63,7 @@ export default function Home() {
           </section>
 
           <section id="experiencia">
-            <H2>Fechas de la gira</H2>
+            <H2>Fechas de la gira <span className="text-2xl md:text-3xl text-[var(--cromo)] opacity-80 [text-shadow:none]">(Experiencia)</span></H2>
             <ol className="border-l-4 border-[var(--magenta)] pl-6 space-y-6">
               {experiencia.map((e, i) => (
                 <li key={i}><p className="titulo text-2xl text-[var(--ambar)]">{e.cuando} · {e.tipo}</p>
@@ -74,7 +74,7 @@ export default function Home() {
           </section>
 
           <section id="proyectos">
-            <H2>Setlist</H2>
+            <H2>Setlist <span className="text-2xl md:text-3xl text-[var(--cromo)] opacity-80 [text-shadow:none]">(Proyectos)</span></H2>
             {(["A", "B"] as const).map((lado) => (
               <div key={lado} className="mb-10">
                 <h3 className="titulo text-3xl text-[var(--ambar)] mb-3">Lado {lado}</h3>
@@ -94,7 +94,7 @@ export default function Home() {
           </section>
 
           <section id="habilidades">
-            <H2>Equipo en el escenario</H2>
+            <H2>Equipo en el escenario <span className="text-2xl md:text-3xl text-[var(--cromo)] opacity-80 [text-shadow:none]">(Habilidades)</span></H2>
             {Object.entries(habilidades).map(([cat, items]) => (
               <Sub key={cat} titulo={cat} descripcion={descripcionHabilidades[cat]}>
                 <Chips items={items} />
@@ -103,7 +103,7 @@ export default function Home() {
           </section>
 
           <section id="formacion">
-            <H2>Discografía académica</H2>
+            <H2>Discografía académica <span className="text-2xl md:text-3xl text-[var(--cromo)] opacity-80 [text-shadow:none]">(Formación académica)</span></H2>
             {formacion.map((f) => (
               <Sub key={f.titulo} titulo={f.titulo} descripcion={f.descripcion}>
                 <ul className="space-y-1 list-disc pl-5">{f.items.map((i) => <li key={i}>{i}</li>)}</ul>
@@ -112,7 +112,7 @@ export default function Home() {
           </section>
 
           <section id="contacto" className="max-w-xl">
-            <H2>Pase de backstage</H2>
+            <H2>Pase de backstage <span className="text-2xl md:text-3xl text-[var(--cromo)] opacity-80 [text-shadow:none]">(Contacto)</span></H2>
             <p className="mb-6">Escríbeme a <a className="underline text-[var(--ambar)]" href={`mailto:${perfil.email}`}>{perfil.email}</a> o usa el formulario.</p>
             <ContactForm />
           </section>
