@@ -115,7 +115,13 @@ npm start
 
 ### Variables de entorno
 
-Por ahora el proyecto no necesita ninguna. Si más adelante conecto un servicio de correo (por ejemplo Resend), la clave va en un archivo `.env.local`, que no se sube a GitHub, y también en la configuración del proyecto en Vercel.
+Ninguna es obligatoria: sin ellas el formulario valida y responde, pero no envía correos. Para que los mensajes lleguen a mi correo con [Resend](https://resend.com) se usan estas variables, que van en un archivo `.env.local` (no se sube a GitHub, hay un ejemplo en `.env.example`) y también en la configuración del proyecto en Vercel:
+
+| Variable | Para qué sirve |
+|---|---|
+| `RESEND_API_KEY` | Clave de Resend. Si no está, no se envía correo. |
+| `CONTACT_TO_EMAIL` | Correo donde recibo los mensajes (por defecto, el del perfil). |
+| `CONTACT_FROM_EMAIL` | Opcional: remitente, solo si verifico un dominio propio en Resend. |
 
 ### Ejecutar los proyectos de Python
 

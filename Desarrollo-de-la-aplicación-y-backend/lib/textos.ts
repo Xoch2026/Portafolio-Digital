@@ -18,7 +18,6 @@ type Textos = {
   h2: Record<"sobreMi" | "experiencia" | "proyectos" | "habilidades" | "formacion" | "contacto", [string, string]>;
   sub: Record<"quien" | "estudio" | "intereses" | "objetivos" | "fortalezas" | "objPersonales" | "objProfesionales", string>;
   lado: (l: string) => string;
-  fotoAlt: (nombre: string) => string;
   escribeAntes: string;
   escribeDespues: string;
   proyecto: {
@@ -53,7 +52,7 @@ type Textos = {
     errGenerico: string;
   };
   codigo: { ocultar: string; verDe: (nombre: string) => string; noCargo: string; cargando: string; noEncontro: string };
-  api: { json: string; nombre: string; correo: string; mensaje: string; ok: string };
+  api: { json: string; nombre: string; correo: string; mensaje: string; ok: string; errorEnvio: string };
 };
 
 export const textos: Record<Lang, Textos> = {
@@ -83,7 +82,6 @@ export const textos: Record<Lang, Textos> = {
       objProfesionales: "Objetivos profesionales",
     },
     lado: (l) => `Lado ${l}`,
-    fotoAlt: (n) => `Fotografía de ${n}`,
     escribeAntes: "Escríbeme a ",
     escribeDespues: " o usa el formulario.",
     proyecto: {
@@ -130,6 +128,7 @@ export const textos: Record<Lang, Textos> = {
       correo: "Correo inválido.",
       mensaje: "El mensaje debe tener entre 10 y 2000 caracteres.",
       ok: "Mensaje enviado. ¡Gracias por pasar por el backstage!",
+      errorEnvio: "No se pudo enviar el mensaje. Inténtalo más tarde.",
     },
   },
 
@@ -159,7 +158,6 @@ export const textos: Record<Lang, Textos> = {
       objProfesionales: "Professional goals",
     },
     lado: (l) => `Side ${l}`,
-    fotoAlt: (n) => `Photo of ${n}`,
     escribeAntes: "Write to me at ",
     escribeDespues: " or use the form.",
     proyecto: {
@@ -206,6 +204,7 @@ export const textos: Record<Lang, Textos> = {
       correo: "Invalid email.",
       mensaje: "The message must be between 10 and 2000 characters.",
       ok: "Message sent. Thanks for stopping by the backstage!",
+      errorEnvio: "The message could not be sent. Please try again later.",
     },
   },
 };

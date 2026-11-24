@@ -43,9 +43,7 @@ export default function Home({ lang }: { lang: Lang }) {
         <section id="inicio" className="relative overflow-hidden min-h-[88vh] grid place-items-center text-center px-6">
           <div className="rejilla absolute inset-x-0 bottom-0 h-1/2 -z-0" aria-hidden />
           <div className="relative">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/xochitl.jpg" alt={t.fotoAlt(perfil.nombre)} className="mx-auto w-36 h-36 md:w-44 md:h-44 rounded-full object-cover object-top border-4 border-[var(--magenta)] shadow-[0_0_30px_var(--magenta)]" />
-            <p className="titulo text-2xl text-[var(--ambar)] mt-6">{t.enVivo}</p>
+            <p className="titulo text-2xl text-[var(--ambar)]">{t.enVivo}</p>
             <h1 className="neon-nombre text-4xl md:text-7xl leading-tight my-4 max-w-4xl mx-auto">{perfil.nombre}</h1>
             <p className="titulo text-3xl">{perfil.carrera}</p>
             <p className="mt-2 text-lg">{perfil.frase}</p>
